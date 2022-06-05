@@ -1,5 +1,5 @@
 {
-    "sketch": "sketch.ino",
+    "sketch": "src/firebase-client/firebase-client.ino",
     "output": "build",
     "board": "esp32:esp32:esp32",
     "port": "/dev/ttyS1",
