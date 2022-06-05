@@ -18,19 +18,19 @@
 #include <Firebase_ESP_Client.h>
 
 //Provide the token generation process info.
-#include "addons/TokenHelper.h"
+#include <addons/TokenHelper.h>
 //Provide the RTDB payload printing info and other helper functions.
-#include "addons/RTDBHelper.h"
+#include <addons/RTDBHelper.h>
 
-// Insert your network credential
 #define WIFI_SSID "Hi"
 #define WIFI_PASSWORD ""
 
-// Insert Firebase project API Key
 #define API_KEY "AIzaSyC0go5OtqxkOornG3oQi83s9P-G-kwCG8I"
 
-// Insert RTDB URLefine the RTDB URL */
 #define DATABASE_URL "https://hydroponics-d32d6-default-rtdb.asia-southeast1.firebasedatabase.app/" 
+
+#define USER_EMAIL "USER_EMAIL"
+#define USER_PASSWORD "USER_PASSWORD"
 
 //Define Firebase Data object
 FirebaseData fbdo;
@@ -39,7 +39,7 @@ FirebaseAuth auth;
 FirebaseConfig config;
 
 unsigned long sendDataPrevMillis = 0;
-int count = 0;
+int count = 0, floatValue;
 bool signupOK = false;
 
 void setup(){
@@ -91,16 +91,14 @@ void loop(){
       Serial.println("REASON: " + fbdo.errorReason());
     }
     count++;
-    
-    // Write an Float number on the database path test/float
-    if (Firebase.RTDB.setFloat(&fbdo, "test/float", 0.01 + random(0,100))){
-      Serial.println("PASSED");
-      Serial.println("PATH: " + fbdo.dataPath());
-      Serial.println("TYPE: " + fbdo.dataType());
+    if (Firebase.RTDB.getFloat(&fbdo, "/test/float")) {
+      if (fbdo.dataType() == "float") {
+        floatValue = fbdo.floatData();
+        Serial.println(floatValue);
+      }
     }
     else {
-  Serial.println("FAILED");
-      Serial.println("REASON: " + fbdo.errorReason());
+      Serial.println(fbdo.errorReason());
     }
   }
 }
