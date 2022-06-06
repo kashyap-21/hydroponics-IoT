@@ -20,6 +20,7 @@
 - Temperature : float
 - Humidity  : float
 - Moisture  : int
+- Light : int
 - pH  : float
 
 ### Control
