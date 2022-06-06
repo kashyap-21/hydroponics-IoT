@@ -11,7 +11,8 @@
 ### Control
 - Control parameters are controlled from flutter app and stored on firebase
 - Esp32 takes data from firebase
-- 
+- Esp32 controls the actuators
+- Update the firebase database with new values
 
 ## Parameters
 
