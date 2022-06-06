@@ -12,3 +12,5 @@
 - Control parameters are controlled from flutter app and stored on firebase
 - Esp32 takes data from firebase
 - 
+## Resources 
+- [Firebase Arduino Lib](https://github.com/mobizt/Firebase-ESP-Client) 
