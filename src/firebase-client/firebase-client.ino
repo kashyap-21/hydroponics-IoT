@@ -9,7 +9,7 @@
   https://github.com/mobizt/Firebase-ESP-Client/blob/main/examples/RTDB/Basic/Basic.ino
 */
 
-#include "env.h"
+#include "variables.h"
 
 void setup(){
   Serial.begin(115200);
@@ -68,6 +68,20 @@ void loop(){
     }
     else {
       Serial.println(fbdo.errorReason());
+    }
+
+    FirebaseJson json;
+
+    if (count == 0)
+    {
+      json.set("value/round/" + String(count), "cool!");
+      json.set("value/ts/.sv", "timestamp");
+      Serial.printf("Set json... %s\n", Firebase.RTDB.set(&fbdo, "/test/json", &json) ? "ok" : fbdo.errorReason().c_str());
+    }
+    else
+    {
+      json.add(String(count), "smart!");
+      Serial.printf("Update node... %s\n", Firebase.RTDB.updateNode(&fbdo, "/test/json/value/round", &json) ? "ok" : fbdo.errorReason().c_str());
     }
   }
 }
