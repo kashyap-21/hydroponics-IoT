@@ -106,6 +106,9 @@ void setup()
 
     dht.setup(DHTpin, DHTesp::DHT11); //for DHT11 Connect DHT sensor to GPIO 17
 
+    // Configuring the time for generating the timestamp!
+    configTime(gmtOffset_sec, daylightOffset_sec, ntpServer);
+
 
      
 }
