@@ -3,8 +3,7 @@
 ## Workflow
 
 ### Monitor
-- Arduino takes data from sensors and actuators
-- Arduino sends data to esp32
+- Esp32 takes data from sensors and actuators
 - Esp32 sends sensors & actuators data to firebase
 - This data is monitored from flutter app
 
